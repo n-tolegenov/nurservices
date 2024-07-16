@@ -1,6 +1,6 @@
 package kz.nurdev.fraud.controller;
 
-import kz.nurdev.fraud.dto.FraudCheckResponse;
+import kz.nurdev.clients.fraud.FraudCheckResponse;
 import kz.nurdev.fraud.service.FraudCheckService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

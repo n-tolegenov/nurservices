@@ -1,6 +1,7 @@
 package kz.nurdev.customer.service;
 
-import kz.nurdev.customer.dto.FraudCheckResponse;
+import kz.nurdev.clients.fraud.FraudCheckResponse;
+import kz.nurdev.clients.fraud.FraudClient;
 import kz.nurdev.customer.model.Customer;
 import kz.nurdev.customer.repository.CustomerRepository;
 import kz.nurdev.customer.request.CustomerRegistrationRequest;
@@ -14,6 +15,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -28,11 +30,14 @@ public class CustomerService {
         customerRepository.saveAndFlush(customer);
 
         // todo: check if fraudster
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+        // RestTemplate
+//        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
+//                "http://FRAUD/api/v1/fraud-check/{customerId}",
+//                FraudCheckResponse.class,
+//                customer.getId()
+//        );
+
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
 
         if(fraudCheckResponse.isFraudster()){
             throw new IllegalStateException("fraudster");
