@@ -35,6 +35,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
+        <!--
+            Spring Cloud Sleuth является библиотекой,
+            которая автоматически генерирует и управляет Trace ID и Span ID в приложениях,
+            построенных с использованием Spring Cloud.
+        -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
         <dependency>
             <groupId>kz.nurdev</groupId>
             <artifactId>clients</artifactId>
