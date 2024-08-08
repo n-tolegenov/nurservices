@@ -104,7 +104,9 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
+<!--          source: Определяет версию Java, с которой исходный код должен быть совместим.-->
           <source>17</source>
+<!--          target: Определяет версию JVM, для которой будет скомпилирован байт-код.-->
           <target>17</target>
         </configuration>
       </plugin>
